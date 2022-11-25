@@ -1,5 +1,8 @@
 import React from 'react'
-import './App.css';
+import Map from './components/map/Map'
+import Menu from './components/menu/Menu'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -18,12 +21,12 @@ const App = () => {
     getVacancies()
   }, [])
 
-  console.log(vacancies)
-
   return (
-    <div className="App">
-    </div>
-  );
+    <>
+      <Menu data={vacancies} />
+      <Map />
+    </>
+  )
 }
 
-export default App;
+export default App
