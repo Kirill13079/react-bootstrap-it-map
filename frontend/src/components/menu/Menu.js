@@ -21,11 +21,7 @@ const Menu = (props) => {
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
-      <Search
-        show={modalShow}
-        vacancies={props.data}
-        onHide={() => setModalShow(false)}
-      />
+      <Search show={modalShow} onHide={() => setModalShow(false)} />
     </Navbar>
   )
 }
