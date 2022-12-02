@@ -1,6 +1,7 @@
 import React from 'react'
 import { MapContainer, ZoomControl } from 'react-leaflet'
 import Tile from './Tile'
+import Markers from './Markers'
 
 import 'leaflet/dist/leaflet.css'
 
@@ -9,6 +10,19 @@ const zoom = 6
 
 const Map = () => {
   const [map, setMap] = React.useState(null)
+  const [vacancies, setVacancies] = React.useState(null)
+
+  React.useEffect(() => {
+    const getVacancies = () => {
+      fetch('http://localhost:5000/')
+        .then((res) => res.json())
+        .then((result) => {
+          setVacancies(result)
+        })
+    }
+
+    getVacancies()
+  }, [])
 
   return (
     <MapContainer
@@ -19,8 +33,9 @@ const Map = () => {
       scrollWheelZoom={true}
       style={{ height: '100vh' }}
     >
-      <ZoomControl position={'topright'} />
+      <ZoomControl position={'bottomright'} />
       <Tile />
+      <Markers data={vacancies} />
     </MapContainer>
   )
 }

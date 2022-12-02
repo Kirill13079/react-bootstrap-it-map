@@ -1,8 +1,8 @@
 import React from 'react'
 import { usePagination, DOTS } from '../../utils/usePagination'
-import Pagination from 'react-bootstrap/Pagination'
+import { Pagination as PaginationBootstrap } from 'react-bootstrap'
 
-const MyPagination = (props) => {
+const Pagination = (props) => {
   const {
     onPageChange,
     totalCount,
@@ -32,26 +32,32 @@ const MyPagination = (props) => {
 
   let lastPage = paginationRange[paginationRange.length - 1]
   return (
-    <Pagination>
-      <Pagination.Prev onClick={onPrevious} disabled={currentPage === 1} />
+    <PaginationBootstrap>
+      <PaginationBootstrap.Prev
+        onClick={onPrevious}
+        disabled={currentPage === 1}
+      />
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <Pagination.Ellipsis key={pageNumber} />
+          return <PaginationBootstrap.Ellipsis key={pageNumber} />
         }
 
         return (
-          <Pagination.Item
+          <PaginationBootstrap.Item
             key={pageNumber}
             onClick={() => onPageChange(pageNumber)}
             active={pageNumber === currentPage}
           >
             {pageNumber}
-          </Pagination.Item>
+          </PaginationBootstrap.Item>
         )
       })}
-      <Pagination.Next onClick={onNext} disabled={currentPage === lastPage} />
-    </Pagination>
+      <PaginationBootstrap.Next
+        onClick={onNext}
+        disabled={currentPage === lastPage}
+      />
+    </PaginationBootstrap>
   )
 }
 
-export default MyPagination
+export default Pagination
