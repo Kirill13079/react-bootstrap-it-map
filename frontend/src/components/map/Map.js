@@ -2,32 +2,19 @@ import React from 'react'
 import { MapContainer, ZoomControl } from 'react-leaflet'
 import Tile from './Tile'
 import Markers from './Markers'
+import MarkerClusterGroup from 'react-leaflet-markercluster'
+
+import 'react-leaflet-markercluster/dist/styles.min.css'
 
 import 'leaflet/dist/leaflet.css'
 
 const center = [53.893009, 27.567444] // Minsk
 const zoom = 6
 
-const Map = () => {
-  const [map, setMap] = React.useState(null)
-  const [vacancies, setVacancies] = React.useState(null)
-
-  React.useEffect(() => {
-    const getVacancies = () => {
-      fetch('http://localhost:5000/')
-        .then((res) => res.json())
-        .then((result) => {
-          setVacancies(result)
-        })
-    }
-
-    getVacancies()
-  }, [])
-
+const Map = (props) => {
   return (
     <MapContainer
       zoomControl={false}
-      whenCreated={setMap}
       center={center}
       zoom={zoom}
       scrollWheelZoom={true}
@@ -35,7 +22,9 @@ const Map = () => {
     >
       <ZoomControl position={'bottomright'} />
       <Tile />
-      <Markers data={vacancies} />
+      <MarkerClusterGroup>
+        <Markers data={props.vacancies} />
+      </MarkerClusterGroup>
     </MapContainer>
   )
 }

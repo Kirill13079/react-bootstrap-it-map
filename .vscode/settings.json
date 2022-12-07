@@ -13,6 +13,8 @@
     },
     "eslint.alwaysShowStatus": true,
     "cSpell.words": [
-        "labelledby"
+        "bottomright",
+        "labelledby",
+        "markercluster"
     ],
 }

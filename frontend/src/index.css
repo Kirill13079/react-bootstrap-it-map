@@ -1,0 +1,93 @@
+#wrapper {
+ padding-left: 0;
+ -webkit-transition: all 0.5s ease;
+ -moz-transition: all 0.5s ease;
+ -o-transition: all 0.5s ease;
+ transition: all 0.5s ease;
+}
+
+#wrapper #header
+{
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+} 
+
+/* #wrapper.toggled {
+ padding-left: 40%;
+}  */
+
+#wrapper.toggled #header {
+    padding-left: 400px;
+}
+
+.overlay {
+ position: fixed;
+ display: block;
+ width: 400px;
+ height: 100%;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ overflow-y: auto;
+ background-color: white;
+ z-index: 1030;
+}
+
+
+
+
+/* @media (min-width: 576px) { 
+    .overlay {
+        width: 40%;
+    }
+    #wrapper.toggled {
+        padding-left: 40%;
+       }
+       
+       #wrapper.toggled #header {
+           padding-left: 40%;
+       }
+}
+
+@media (min-width: 768px) { 
+    .overlay {
+        width: 20%;
+    }
+    #wrapper.toggled {
+        padding-left: 20%;
+       }
+       
+       #wrapper.toggled #header {
+           padding-left: 20%;
+       }
+ }
+
+@media (min-width: 992px) { 
+    .overlay {
+        width: 20%;
+    }
+    #wrapper.toggled {
+        padding-left: 20%;
+       }
+       
+       #wrapper.toggled #header {
+           padding-left: 20%;
+       }
+ }
+
+@media (min-width: 1200px) {
+    .overlay {
+        width: 20%;
+    }
+    #wrapper.toggled {
+        padding-left: 20%;
+       }
+       
+       #wrapper.toggled #header {
+           padding-left: 20%;
+       }
+} */

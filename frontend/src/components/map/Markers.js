@@ -1,5 +1,6 @@
 import React from 'react'
 import { Marker, Popup } from 'react-leaflet'
+import MarkerClusterGroup from 'react-leaflet-markercluster'
 import L from 'leaflet'
 
 const pointerIcon = (skill) => {

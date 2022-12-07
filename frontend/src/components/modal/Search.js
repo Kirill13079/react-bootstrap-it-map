@@ -6,7 +6,6 @@ import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
-import groupBy from '../../utils/groupBy'
 import Badge from 'react-bootstrap/Badge'
 import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
@@ -14,28 +13,44 @@ import Pagination from '../pagination/Pagination'
 
 let PageSize = 4
 
-const ListKeysVacancies = ({ vacancies, keys, selected, activeKey }) => {
+const ListKeysVacancies = ({
+  vacancies,
+  keys,
+  selected,
+  activeKey,
+  checkedKey,
+}) => {
   if (keys) {
     return keys.map((item, i) => (
-      <ListGroup.Item
-        key={i}
-        action
-        id={item}
-        className="d-flex justify-content-between align-items-start"
-        onClick={(e) => selected(e.target.getAttribute('id'))}
-        active={activeKey === item}
-      >
-        <Image
-          src={`${process.env.PUBLIC_URL}/images/pin_${item}.png`}
-          height="20"
-        />
-        {!item ? 'не указано' : item}
-        <Badge bg="primary" pill>
-          {vacancies.get(keys[i]).length}
-        </Badge>
-      </ListGroup.Item>
+      <Container key={`${i}-${item.key}`}>
+        <Button
+          onClick={(e) => checkedKey(i, item.key)}
+          disabled={!item.isChecked}
+        >
+          test
+        </Button>
+
+        <ListGroup.Item
+          action
+          id={item.key}
+          className="d-flex justify-content-between align-items-start"
+          onClick={(e) => selected(e.target.getAttribute('id'))}
+          active={activeKey === item.key}
+        >
+          <Image
+            src={`${process.env.PUBLIC_URL}/images/pin_${item.key}.png`}
+            height="20"
+          />
+          {!item.key ? 'не указано' : item.key}
+          <Badge bg="primary" pill>
+            {vacancies.get(keys[i].key).length}
+          </Badge>
+        </ListGroup.Item>
+      </Container>
     ))
   }
+
+  return null
 }
 
 const VacanciesByKey = ({
@@ -82,12 +97,12 @@ const VacanciesByKey = ({
       </Container>
     )
   }
+
+  return null
 }
 
 const Search = (props) => {
   const [value, setValue] = React.useState('')
-  const [vacanciesGroupBy, setVacanciesGroupBy] = React.useState(null)
-  const [vacanciesKeys, setVacanciesKeys] = React.useState(null)
   const [activeKey, setActiveKey] = React.useState('')
   const [currentPage, setCurrentPage] = React.useState(1)
 
@@ -106,29 +121,13 @@ const Search = (props) => {
     setCurrentPage(page)
   }
 
-  React.useEffect(() => {
-    const getVacancies = () => {
-      fetch('http://localhost:5000/')
-        .then((res) => res.json())
-        .then((result) => {
-          setVacanciesGroupBy(
-            result ? groupBy(result, (item) => item.keySkill) : null
-          )
-          setVacanciesKeys(
-            result
-              ? Array.from(groupBy(result, (item) => item.keySkill).keys()).map(
-                  (key) => key
-                )
-              : null
-          )
-        })
-    }
-
-    getVacancies()
-  }, [])
-
   return (
-    <Modal {...props} size="xl" aria-labelledby="contained-modal-title-vcenter">
+    <Modal
+      show={props.show}
+      onHide={props.onHide}
+      size="xl"
+      aria-labelledby="contained-modal-title-vcenter"
+    >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Search vacancies
@@ -152,13 +151,14 @@ const Search = (props) => {
             <Col sm={4}>
               <ListGroup>
                 <ListKeysVacancies
-                  vacancies={vacanciesGroupBy}
+                  vacancies={props.data[0]}
                   keys={
                     value
-                      ? vacanciesKeys.filter((vacancy) => vacancy === value)
-                      : vacanciesKeys
+                      ? props.data[1].filter((vacancy) => vacancy === value)
+                      : props.data[1]
                   }
                   selected={selectedActiveKey}
+                  checkedKey={props.checkedKey}
                   activeKey={activeKey}
                 />
               </ListGroup>
@@ -166,7 +166,7 @@ const Search = (props) => {
             <Col sm={8}>
               <VacanciesByKey
                 activeKey={activeKey}
-                vacancies={vacanciesGroupBy}
+                vacancies={props.data[0]}
                 currentPage={currentPage}
                 selectedPage={selectedPage}
               ></VacanciesByKey>
