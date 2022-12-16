@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Map from './components/map/Map'
 import Menu from './components/menu/Menu'
-import Search from './components/modal/Search'
 import SearchTest from './components/modal/SearchTest'
 import Navbar from 'react-bootstrap/Navbar'
 
@@ -10,70 +9,100 @@ import produce from 'immer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
-import { Container } from 'react-bootstrap'
+
 import Info from './components/modal/Info'
 
 const App = () => {
-  const [modalInfo, setModalInfo] = React.useState(false)
-  const [modalSetting, setModalSetting] = React.useState(false)
+  const [data, setData] = React.useState({
+    vacancies: {
+      list: null,
+      filtered: null,
+      groupBy: null,
+    },
+    keys: {
+      list: null,
+    },
+  })
 
-  const [vacancies, setVacancies] = React.useState(null)
-  const [vacanciesFiltered, setVacanciesFiltered] = React.useState(null)
-  const [vacanciesGroupBy, setVacanciesGroupBy] = React.useState(null)
-  const [vacanciesKeys, setVacanciesKeys] = React.useState(null)
+  const [showModal, setShowModal] = React.useState({
+    modal: { info: false, search: false },
+  })
 
-  const openModal = (nameModal) => {
-    if (nameModal === 'info') {
-      setModalInfo(!modalInfo)
-      setModalSetting(false)
-    } else if (nameModal === 'setting') {
-      setModalSetting(!modalSetting)
-      setModalInfo(false)
-    }
-  }
+  const handleModal = useCallback((name) => {
+    setShowModal(
+      produce((draft) => {
+        const modal = draft['modal']
 
-  const checkedKey = (index, key) => {
-    if (index) {
-      setVacanciesKeys(
-        produce((vacanciesKeys) => {
-          vacanciesKeys[index].isChecked = !vacanciesKeys[index].isChecked
-        }),
-        setVacanciesFiltered(
-          vacancies.filter((vacancy) => vacancy.keySkill !== key)
-        )
+        if (name === 'info') {
+          modal.info = !modal.info
+          modal.search = false
+        } else if (name === 'search') {
+          modal.search = !modal.search
+          modal.info = false
+        }
+      })
+    )
+  }, [])
+
+  const handleChecked = useCallback((key) => {
+    const editData = () => {
+      setData(
+        produce((draft) => {
+          const checkedKey = draft['keys'].list.find((item) => item.key === key)
+          const checkedKeys = []
+
+          checkedKey.isChecked = !checkedKey.isChecked
+
+          draft['keys'].list.forEach((item) => {
+            if (item.isChecked) checkedKeys.push(item.key)
+          })
+
+          draft['vacancies'].filtered = draft['vacancies'].list.filter((item) =>
+            checkedKeys.includes(item.keySkill)
+          )
+        })
       )
     }
-  }
+
+    editData()
+  }, [])
 
   React.useEffect(() => {
-    const getVacancies = () => {
-      fetch('http://localhost:5000/')
+    const getData = () => {
+      fetch('http://localhost:4001/')
         .then((res) => res.json())
         .then((result) => {
-          setVacancies(result)
-          setVacanciesFiltered(result)
-          setVacanciesGroupBy(
-            result ? groupBy(result, (item) => item.keySkill) : null
-          )
-          setVacanciesKeys(
-            result
-              ? Array.from(groupBy(result, (item) => item.keySkill).keys()).map(
-                  (key) => ({
+          setData({
+            vacancies: {
+              list: result,
+              filtered: result,
+              groupBy: result ? groupBy(result, (item) => item.keySkill) : null,
+            },
+            keys: {
+              list: result
+                ? Array.from(
+                    groupBy(result, (item) => item.keySkill).keys()
+                  ).map((key) => ({
                     key: key,
                     isChecked: true,
                     isActive: false,
-                  })
-                )
-              : null
-          )
+                  }))
+                : null,
+            },
+          })
         })
     }
 
-    getVacancies()
+    getData()
   }, [])
 
   return (
-    <div id="wrapper" class={modalInfo || modalSetting ? 'toggled' : ''}>
+    <div
+      id="wrapper"
+      class={
+        showModal['modal'].info || showModal['modal'].search ? 'toggled' : ''
+      }
+    >
       <Navbar
         collapseOnSelect
         expand="lg"
@@ -82,20 +111,15 @@ const App = () => {
         variant="white"
         id="header"
       >
-        <Menu search={openModal}></Menu>
-        {/*         <Search
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          data={[vacanciesGroupBy, vacanciesKeys]}
-          checkedKey={checkedKey}
-        /> */}
+        <Menu search={handleModal}></Menu>
       </Navbar>
-      <Info visible={modalInfo}></Info>
+      <Info visible={showModal['modal'].info}></Info>
       <SearchTest
-        visible={modalSetting}
-        data={[vacancies, vacanciesGroupBy, vacanciesKeys]}
+        visible={showModal['modal'].search}
+        checkedKey={handleChecked}
+        data={data}
       ></SearchTest>
-      <Map vacancies={vacanciesFiltered} />
+      <Map vacancies={data['vacancies'].filtered} />
     </div>
   )
 }

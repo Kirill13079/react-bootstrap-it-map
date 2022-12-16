@@ -30,6 +30,7 @@ const Pagination = (props) => {
     onPageChange(currentPage - 1)
   }
 
+  let ct = 1
   let lastPage = paginationRange[paginationRange.length - 1]
   return (
     <PaginationBootstrap>
@@ -39,7 +40,8 @@ const Pagination = (props) => {
       />
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <PaginationBootstrap.Ellipsis key={pageNumber} />
+          ct++
+          return <PaginationBootstrap.Ellipsis key={pageNumber + '_' + ct} />
         }
 
         return (

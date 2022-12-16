@@ -1,0 +1,118 @@
+.listWrapper {
+    background: #fff;
+}
+
+.list {
+    width: 375px;
+    position: relative;
+    z-index: 2;
+}
+
+.listHeader {
+    width: 375px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 3;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 8px 16px;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0,0,0,0.64);
+}
+
+.listContent {
+    max-width: calc(100% - 128px);
+    width: 100%;
+    display: flex;
+}
+
+.listItem{
+    width: 375px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.listItem_img {
+    position: relative;
+    flex: 0 0 auto;
+    height: 48px;
+    width: 48px;
+    border-radius: 4px;
+    align-self: center;
+    margin-right: 12px;
+    background-color: rgba(255,20,70,0.12);
+    box-sizing: border-box;
+}
+
+.list_content {
+    width: calc(100% - 200px);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.list_content_meta {
+    line-height: 24px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.list_content_meta span {
+    font-size: px;
+    font-weight: 500;
+}
+
+.list_content_title {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.list_content_title span {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0,0,0,0.64);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.count {
+    width: 70px
+}
+
+.t{
+    border: 1px solid #ff1446;
+    border-radius: 10px;
+    position: relative;
+    padding: 0 8px;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #ff1446;
+    display: flex;
+    align-items: center;
+    min-height: 20px;
+    fill: #ff1446;
+}
+
+.t span {
+    margin-left: 4px;
+}
+
+.t svg {
+    height: 8px;
+    width: 8px;
+}

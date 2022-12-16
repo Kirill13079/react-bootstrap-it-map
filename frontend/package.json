@@ -19,6 +19,7 @@
     "react-leaflet-draw": "^0.19.8",
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-scripts": "5.0.1",
+    "use-immer": "^0.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,0 +1,8 @@
+.todo-list li {
+  border: 0;
+  margin: 0;
+  padding: 5px!important;
+  background: 0 0!important;
+  display: block;
+  text-align: left;
+}

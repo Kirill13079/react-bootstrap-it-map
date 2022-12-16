@@ -10,7 +10,7 @@ const Menu = (props) => {
   return (
     <Container fluid>
       <Navbar.Text>
-        <Button onClick={() => props.search('setting')} variant="primary">
+        <Button onClick={() => props.search('search')} variant="primary">
           <BsFillGearFill />
         </Button>{' '}
         <Button variant="primary" onClick={() => props.search('info')}>
