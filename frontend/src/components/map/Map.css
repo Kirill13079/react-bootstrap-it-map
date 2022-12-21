@@ -1,0 +1,68 @@
+.map__button {
+    border: none;
+}
+.map__button--count {
+    position: absolute;
+    top: 50%;
+    z-index: 500;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: block;
+}
+
+.map__button__count--number {
+    color: #fff;
+    font-weight: 500;
+    border-radius: 14px;
+    position: absolute;
+    right: 0;
+    top: -23px;
+    padding: 2px 7px;
+    font-size: 14px;
+    background-color: #606060;
+    display: inline-block;
+    line-height: 16px;
+}
+
+.map__button__count--caption{
+    padding: 15px 24px;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0,0,0,.64);
+    border-radius: 24px;
+    box-shadow: 0 3px 9px 0 rgba(0,0,0,0.11);
+}
+
+.close__map--button{
+    z-index: 800;
+    cursor: pointer;
+    clear: both;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    display: block;
+    position: fixed;
+    left: 10px;
+}
+
+.close__map__button--content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background: #229fd9;
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 11%);
+}
+
+.close__map__button--content {
+    background: #1c7fad;
+}
+
+.close__map__button--content svg {
+    height: 24px;
+    width: 24px;
+    fill: #fff;
+}

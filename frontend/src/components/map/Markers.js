@@ -21,13 +21,31 @@ const pointerIconActive = () => {
   })
 }
 
-const Markers = ({ data }) => {
+const MarkerPopup = (key) => {
+  return <p>{key}</p>
+}
+
+const Markers = ({ map, data, onSelectedMarker }) => {
+  const [test, setTest] = React.useState(null)
+
+  const m = (key) => {
+    alert(key)
+  }
+
   if (data) {
-    return data.map(({ lat, lng, keySkill }, index) => (
+    return data.map((item, index) => (
       <Marker
-        icon={pointerIcon(keySkill)}
+        icon={pointerIcon(item.keySkill)}
         key={index}
-        position={{ lat, lng }}
+        position={{ lat: item.lat, lng: item.lng }}
+        eventHandlers={{
+          click(e) {
+            const location = e.target.getLatLng()
+            map.flyToBounds([location])
+
+            onSelectedMarker(item)
+          },
+        }}
       ></Marker>
     ))
   }
