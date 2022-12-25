@@ -25,24 +25,35 @@
     display: flex;
 }
 
+.key__item--wrapper {
+    display: flex;
+    border-bottom: 1px solid rgba(76,15,142,0.08);
+    background-color: white;
+}
+
+.key__item--wrapper:hover {
+    background-color: red;
+}
+
 .key__item { 
     width: 100%;
     display: flex;
-    justify-content: space-between;
+  /*   justify-content: space-between; */
     padding: 12px 16px;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+   /*  border-bottom: 1px solid rgba(0,0,0,0.1); */
     cursor: pointer;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    background: #fff;
-    border-bottom: 1px solid rgba(76,15,142,0.08);
+    background: transparent;
+   /*  border-bottom: 1px solid rgba(76,15,142,0.08); */
     align-items: center;
 }
 
-.key__item:hover { 
-    background: #333333;
+.disabled {
+    pointer-events: none;
+    opacity: 0.7;
 }
 
 .key__item__img {
@@ -63,7 +74,7 @@
     width: calc(100% - 128px);
     flex-direction: row;
     flex-wrap: wrap;
-    max-width: calc(100% - 128px);
+  /*   max-width: calc(100% - 128px); */
     display: flex;
     align-items: center;
 }
@@ -149,18 +160,24 @@
 .key__buttons {
     display: flex;
     justify-content: space-between;
-    padding-left: 24px;
+    padding-right: 24px;
     box-sizing: border-box;
+    align-items: center;
+    cursor: pointer;
 }
 
 .key__buttons--button:not(:last-child) {
     margin-right: 8px;
 }
 
+.key__buttons--button {
+    cursor: pointer;
+}
+
 .key__buttons--button svg {
     height: 24px;
     width: 24px;
-    fill: #fff;
+    fill: #fff;  
 }
 
 .key__buttons--button {
@@ -176,5 +193,69 @@
 
 .key__buttons--button:hover {
     background: #1c7fad;
+}
+
+.list__pagination {
+    position: relative;
+    width: 100%;
+}
+
+.panelWrapper {
+    width: 100%;
+    background: white;
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.drugStorePagination__pageList {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    max-width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 56px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.drugStorePagination__page {
+    --topSafeArea: 0;
+    --leftSafeArea: 0;
+    --rightSafeArea: 0;
+    --bottomSafeArea: 0;
+    --topPanelHeight: 0;
+    text-size-adjust: 100%;
+    -webkit-box-direction: normal;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "“Segoe UI”", Oxygen, Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "“Helvetica Neue”", "“Proxima Nova”", sans-serif !important;
+    font-size: 15px;
+    line-height: 24px;
+    transition-duration: .12s;
+    transition-timing-function: ease-in-out;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition-property: background-color;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: #000;
+    text-decoration: none;
 }
 

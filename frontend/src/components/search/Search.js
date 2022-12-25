@@ -4,13 +4,10 @@ const Search = (props) => {
   const searchWrapper = {
     mobile: {
       width: '100%',
-      display:
-        props.size['isMobile'].value && props.size['isHideMap'].value
-          ? 'none'
-          : 'block',
+      display: props.size['mobile'].value && props.isHideMap ? 'none' : 'block',
     },
     desktop: {
-      width: '50vh',
+      width: props.size['window'].width <= '1280' ? '50vw' : '700px',
     },
   }
 
@@ -18,7 +15,7 @@ const Search = (props) => {
     <div
       className="search__wrapper"
       style={
-        props.size['isMobile'].value || props.size['isHideMap'].value
+        props.isHideMap || props.size['mobile'].value
           ? searchWrapper['mobile']
           : searchWrapper['desktop']
       }

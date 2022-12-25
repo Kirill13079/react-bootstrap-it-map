@@ -1,5 +1,13 @@
 import './List.css'
 
+const Vacancies = (props) => {
+  return props.vacancies.map((item, i) => (
+    <div key={i} className="key__item--wrapper">
+      {item.name}
+    </div>
+  ))
+}
+
 const Keys = (props) => {
   const keyButtonStyles = {
     checked: {
@@ -11,39 +19,46 @@ const Keys = (props) => {
   }
 
   return props.keys.map((item, i) => (
-    <div key={i} className="key__item">
-      <div className="key__item__img">
-        <img
-          src={`${process.env.PUBLIC_URL}/images/pin_${item.key}.png`}
-          width="48"
-          height="48"
-          alt={item.key}
-        />
-      </div>
-      <div className="key__item--content">
-        <div className="key__item__content--title">
-          <span>{item.key}</span>
+    <div key={i} className="key__item--wrapper">
+      <div
+        className={item.isChecked ? 'key__item' : 'key__item disabled'}
+        onClick={(e) =>
+          item.isChecked ? props.onSelectedKey(item.key) : alert('lox')
+        }
+      >
+        <div className="key__item__img">
+          <img
+            src={`${process.env.PUBLIC_URL}/images/pin_${item.key}.png`}
+            width="48"
+            height="48"
+            alt={item.key}
+          />
         </div>
-        <div className="key__item__content--info">
-          <span>
-            {props.vacancies
-              .get(props.keys[i].key)
-              .map((v, j) =>
-                props.vacancies.get(props.keys[i].key).length === j + 1
-                  ? `${v.name} `
-                  : `${v.name}, `
-              )}
-          </span>
-        </div>
-        <div className="key__item__content--count">
-          <div className="count__wrapper">
-            <div className="count__wrapper--content">
-              <svg viewBox="0 0 16 16">
-                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                <path d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
-                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-              </svg>
-              <span>{props.vacancies.get(props.keys[i].key).length}</span>
+        <div className="key__item--content">
+          <div className="key__item__content--title">
+            <span>{item.key}</span>
+          </div>
+          <div className="key__item__content--info">
+            <span>
+              {props.vacancies
+                .get(props.keys[i].key)
+                .map((v, j) =>
+                  props.vacancies.get(props.keys[i].key).length === j + 1
+                    ? `${v.name} `
+                    : `${v.name}, `
+                )}
+            </span>
+          </div>
+          <div className="key__item__content--count">
+            <div className="count__wrapper">
+              <div className="count__wrapper--content">
+                <svg viewBox="0 0 16 16">
+                  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                  <path d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                </svg>
+                <span>{props.vacancies.get(props.keys[i].key).length}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -77,13 +92,10 @@ const List = (props) => {
   const listStyles = {
     mobile: {
       width: '100%',
-      display:
-        props.size['isMobile'].value && props.size['isHideMap'].value
-          ? 'none'
-          : 'block',
+      display: props.size['mobile'].value && props.isHideMap ? 'none' : 'block',
     },
     desktop: {
-      width: '50vh',
+      width: props.size['window'].width <= '1280' ? '50vw' : '700px',
     },
   }
 
@@ -91,12 +103,12 @@ const List = (props) => {
   const filtered = props.data['vacancies'].filtered
   const groupBy = props.data['vacancies'].groupBy
 
-  if (keys) {
+  if (keys && !props.selectedKey) {
     return (
       <div
         className="list"
         style={
-          props.size['isMobile'].value || props.size['isHideMap'].value
+          props.size['mobile'].value || props.isHideMap
             ? listStyles['mobile']
             : listStyles['desktop']
         }
@@ -113,7 +125,40 @@ const List = (props) => {
               vacancies={groupBy}
               keys={keys}
               onCheckedKey={props.onCheckedKey}
+              onSelectedKey={props.onSelectedKey}
             ></Keys>
+          </div>
+        </div>
+      </div>
+    )
+  } else if (groupBy && props.selectedKey) {
+    return (
+      <div
+        className="list"
+        style={
+          props.size['mobile'].value || props.isHideMap
+            ? listStyles['mobile']
+            : listStyles['desktop']
+        }
+      >
+        <div className="list__content">
+          <div className="list__content--header">
+            <div className="header__content">
+              <span>Вакансии: </span>
+              <span>{groupBy.get(props.selectedKey).length}</span>
+            </div>
+          </div>
+          <div className="list__content--body">
+            <Vacancies vacancies={groupBy.get(props.selectedKey)}></Vacancies>
+          </div>
+        </div>
+        <div className="list__pagination">
+          <div className="panelWrapper">
+            <div className="drugStorePagination__pageList horizontalScrollbar">
+              <a class="drugStorePagination__page" data-page="2">
+                2
+              </a>
+            </div>
           </div>
         </div>
       </div>

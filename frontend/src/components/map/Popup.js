@@ -1,3 +1,4 @@
+import React from 'react'
 import './Popup.css'
 
 const SkillList = ({ skill }) => {
@@ -23,16 +24,18 @@ const Popup = (props) => {
   const popupStyles = {
     mobile: {
       left: '0',
+      width: '100%',
     },
     desktop: {
-      right: 'calc(50% - 50vh)',
-      maxWidth: '400px',
+      left: props.size['window'].width <= '1280' ? '55vw' : `850px`,
+      right: props.size['window'].width <= '1280' ? '5vw' : '100px',
+      width: props.size['window'].width <= '1280' ? 'calc(100% - 60vw)' : '',
     },
   }
 
   if (
-    (props.size['isMobile'].value && !props.size['isHideMap'].value) ||
-    (!props.size['isMobile'].value && props.size['isHideMap'].value) ||
+    (props.size['mobile'].value && !props.isHideMap) ||
+    (!props.size['mobile'].value && props.isHideMap) ||
     !props.marker
   ) {
     return null
@@ -42,7 +45,7 @@ const Popup = (props) => {
     <div
       className="popup__wrapper"
       style={
-        props.size['isMobile'].value || props.size['isHideMap'].value
+        props.size['mobile'].value || props.isHideMap
           ? popupStyles['mobile']
           : popupStyles['desktop']
       }

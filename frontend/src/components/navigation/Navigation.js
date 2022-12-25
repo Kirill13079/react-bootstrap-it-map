@@ -7,13 +7,10 @@ const Navigation = (props) => {
   const navigationWrapper = {
     mobile: {
       width: '100%',
-      display:
-        props.size['isMobile'].value && props.size['isHideMap'].value
-          ? 'none'
-          : 'block',
+      display: props.size['mobile'].value && props.isHideMap ? 'none' : 'block',
     },
     desktop: {
-      width: '50vh',
+      width: props.size['window'].width <= '1280' ? '50vw' : '700px',
     },
   }
 
@@ -30,7 +27,7 @@ const Navigation = (props) => {
     <div
       className="navigation__wrapper"
       style={
-        props.size['isHideMap'].value || props.size['isMobile'].value
+        props.isHideMap || props.size['mobile'].value
           ? navigationWrapper['mobile']
           : navigationWrapper['desktop']
       }
@@ -44,13 +41,16 @@ const Navigation = (props) => {
           </span>
           <span className="back_button__text">Назад</span>
         </a>
-        <Title title="Поиск вакансий" description="sldfk ldfks" />
+        <Title
+          title={props.selectedKey ? props.selectedKey : 'Поиск вакансий'}
+          description="sldfk ldfks"
+        />
       </div>
       <button
         className="hide__map__button"
         onClick={props.onHideMap}
         style={
-          props.size['isHideMap'].value || props.size['isMobile'].value
+          props.isHideMap || props.size['mobile'].value
             ? hideMapButton['mobile']
             : hideMapButton['desktop']
         }

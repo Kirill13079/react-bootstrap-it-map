@@ -39,7 +39,10 @@ const Map = (props) => {
       height: '96px',
     },
     desktop: {
-      width: 'calc(100% - 50vh)',
+      width:
+        props.size['window'].width <= '1280'
+          ? 'calc(100% - 50vw)'
+          : 'calc(100% - 700px)',
       top: '0px',
       right: '0px',
       position: 'fixed',
@@ -57,10 +60,7 @@ const Map = (props) => {
       backgroundImage: 'url(https://apteka.103.by/images/map_mask.png)',
       backgroundPosition: '50% 50%',
       zIndex: '2',
-      display:
-        props.size['isMobile'].value && props.size['isHideMap'].value
-          ? 'none'
-          : 'block',
+      display: props.size['mobile'].value && props.isHideMap ? 'none' : 'block',
     },
     desktop: {
       display: 'none',
@@ -74,11 +74,13 @@ const Map = (props) => {
     },
   }
 
+  console.log(props.size['mobile'].value)
+
   return (
     <div
       className="map__wrapper"
       style={
-        props.size['isMobile'].value || props.size['isHideMap'].value
+        props.size['mobile'].value || props.isHideMap
           ? mapWrapperStyles['mobile']
           : mapWrapperStyles['desktop']
       }
@@ -86,7 +88,7 @@ const Map = (props) => {
       <button
         className="map__button"
         style={
-          props.size['isMobile'].value || props.size['isHideMap'].value
+          props.size['mobile'].value || props.isHideMap
             ? mapButtonStyles['mobile']
             : mapButtonStyles['desktop']
         }
@@ -105,14 +107,15 @@ const Map = (props) => {
         center={center}
         zoom={zoom}
         scrollWheelZoom={true}
-        style={{ height: '100vh', zIndex: props.size ? '1' : '2' }}
+        style={{
+          height: '100vh',
+          zIndex: props.size ? '1' : '2',
+        }}
       >
         <ZoomControl position={'bottomright'} />
         <Tile />
         <CloseMap
-          visible={
-            props.size['isMobile'].value && props.size['isHideMap'].value
-          }
+          visible={props.size['mobile'].value && props.isHideMap}
           onCloseMap={props.onHideMap}
         ></CloseMap>
         <MarkerClusterGroup>

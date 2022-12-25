@@ -2,11 +2,10 @@
     background: #fff;
     position: fixed;
     bottom: 0;
-    right: calc(50% - 50vh);
     box-sizing: border-box;
     z-index: 1000;
-    width: 100%;
     display: flex;
+    max-height: 80%;
     flex-direction: column;
     transition: transform .4s ease-in-out;
     border-top-left-radius: 20px;
