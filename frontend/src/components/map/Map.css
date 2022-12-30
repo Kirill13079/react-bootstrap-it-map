@@ -1,6 +1,22 @@
+/* #map {
+    display: flex;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    cursor: -webkit-grab;
+    background: red;
+    outline: 0;
+    touch-action: none;
+    position: relative;
+} */
+
+.map__wrapper {
+    overflow: hidden;
+}
+
 .map__button {
     border: none;
 }
+
 .map__button--count {
     position: absolute;
     top: 50%;
@@ -65,4 +81,14 @@
     height: 24px;
     width: 24px;
     fill: #fff;
+}
+
+.controls__map__div {
+    z-index: 800;
+    cursor: pointer;
+    clear: both;
+    float: right;
+    margin: 10px;
+    display: block;
+    position: fixed;
 }

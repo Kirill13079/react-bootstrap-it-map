@@ -1,6 +1,7 @@
 import React from 'react'
 import { usePagination, DOTS } from '../../utils/usePagination'
-import { Pagination as PaginationBootstrap } from 'react-bootstrap'
+
+import './Pagination.css'
 
 const Pagination = (props) => {
   const {
@@ -8,7 +9,7 @@ const Pagination = (props) => {
     totalCount,
     siblingCount = 1,
     currentPage,
-    pageSize,
+    pageSize = 5,
   } = props
 
   const paginationRange = usePagination({
@@ -33,7 +34,33 @@ const Pagination = (props) => {
   let ct = 1
   let lastPage = paginationRange[paginationRange.length - 1]
   return (
-    <PaginationBootstrap>
+    <div className="pagination">
+      <div className="pagination__wrapper">
+        <div className="scroll">
+          {paginationRange.map((pageNumber) => {
+            if (pageNumber === DOTS) {
+              ct++
+              return <p key={pageNumber + '_' + ct}> </p>
+            }
+
+            return (
+              <a
+                className={
+                  pageNumber === currentPage
+                    ? 'pagination__item--active'
+                    : 'pagination__item'
+                }
+                key={pageNumber}
+                onClick={() => onPageChange(pageNumber)}
+              >
+                {pageNumber}
+              </a>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+    /*   <PaginationBootstrap>
       <PaginationBootstrap.Prev
         onClick={onPrevious}
         disabled={currentPage === 1}
@@ -58,7 +85,7 @@ const Pagination = (props) => {
         onClick={onNext}
         disabled={currentPage === lastPage}
       />
-    </PaginationBootstrap>
+    </PaginationBootstrap> */
   )
 }
 

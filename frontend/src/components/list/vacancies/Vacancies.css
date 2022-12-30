@@ -1,0 +1,92 @@
+.vacancy__item--wrapper {
+    display: flex;
+    border-bottom: 1px solid rgba(76,15,142,0.08);
+    background-color: white;
+}
+
+.vacancy__item--wrapper:hover {
+    background-color: whitesmoke;
+}
+
+.vacancy__item {
+    width: 100%;
+    display: flex;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: transparent;
+    align-items: center;
+}
+
+.vacancy__item--content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: [startCol] 180px [secondCol] 1fr 1fr 1fr [endCol];
+    grid-template-rows: [startRow] auto [secondRow] auto auto auto auto auto auto auto [endRow];
+    grid-column-gap: 24px;
+    overflow: hidden;
+}
+
+.vacancy__item__title {
+    grid-column: secondCol / endCol;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.vacancy__item__company {
+    grid-column: secondCol / endCol;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(0,0,0,0.8);
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.vacancy__item__company span {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0,0,0,0.64);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.vacancy__item__route {
+    grid-column: secondCol / endCol;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(0,0,0,0.8);
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.vacancy__item__route svg {
+    flex: 0 0 auto;
+    height: 20px;
+    width: 20px;
+    fill: rgba(0,0,0,0.16);
+    margin-right: 8px;
+}
+
+.vacancy__item__route span {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0,0,0,0.64);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

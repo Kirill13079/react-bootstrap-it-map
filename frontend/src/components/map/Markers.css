@@ -1,0 +1,149 @@
+.marker__icon--wrapper {
+  background-color: transparent;
+}
+
+.marker__icon {
+  display: flex;
+  border-radius: 14px;
+  padding: 3px 3px;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 3px 7px 0 rgba(47,112,255,0.32);
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 21px;
+  color: #fff;
+  transition: transform .4s ease-in-out,-webkit-transform .4s ease-in-out;
+  position: absolute;
+  transition-property: transform,opacity,-webkit-transform;
+  transition-duration: .3s;
+  transition-timing-function: ease-in-out;
+  background: #098aff;
+  transform: translate(-50%,2px) scale(1);
+}
+
+.marker__icon--image 
+{ 
+  width: 24px; 
+  height: 24px; 
+  overflow: hidden; 
+  border-radius: 50%; 
+} 
+
+.marker__icon--image img 
+{ 
+  width: auto; 
+  height: 100%; 
+}
+
+.marker__icon:hover {
+  background-color: #ff1446;
+}
+
+.marker__icon span {
+  background: transparent;
+  border-radius: 14px;
+  color: #fff;
+  white-space: nowrap;
+  padding: 0 8px;
+}
+
+.marker__icon--selected {
+  display: flex;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  position: absolute;
+  transform: translate(-50%,-36px);
+  transition: all .4s ease-in-out;
+  border-radius: 20px;
+  padding: 8px 8px;
+  background-color: #ff1446;
+  box-shadow: 0 3px 7px 0 rgba(203,0,43,0.32);
+}
+
+.drugStoreMarker__selectedMarker {
+  --topSafeArea: 0;
+  --leftSafeArea: 0;
+  --rightSafeArea: 0;
+  --bottomSafeArea: 0;
+  --topPanelHeight: 0;
+  text-size-adjust: 100%;
+  -webkit-box-direction: normal;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: auto;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  line-height: 23px;
+  font-size: 17px;
+  visibility: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "“Segoe UI”", Oxygen, Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "“Helvetica Neue”", "“Proxima Nova”", sans-serif !important;
+  display: block;
+}
+
+.drugStoreMarker__price{
+  --topSafeArea: 0;
+  --leftSafeArea: 0;
+  --rightSafeArea: 0;
+  --bottomSafeArea: 0;
+  --topPanelHeight: 0;
+  text-size-adjust: 100%;
+  -webkit-box-direction: normal;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: auto;
+  text-align: center;
+  line-height: 23px;
+  font-size: 17px;
+  visibility: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "“Segoe UI”", Oxygen, Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "“Helvetica Neue”", "“Proxima Nova”", sans-serif !important;
+  background: transparent;
+  border-radius: 14px;
+  color: #fff;
+  white-space: nowrap;
+  padding: 0 13px;
+  display: inline-block;
+  background-color: #ff1446;
+}
+
+.drugStoreMarker__dot {
+  --topSafeArea: 0;
+  --leftSafeArea: 0;
+  --rightSafeArea: 0;
+  --bottomSafeArea: 0;
+  --topPanelHeight: 0;
+  text-size-adjust: 100%;
+  -webkit-box-direction: normal;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: auto;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  line-height: 23px;
+  font-size: 17px;
+  visibility: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "“Segoe UI”", Oxygen, Ubuntu, Cantarell, "“Fira Sans”", "“Droid Sans”", "“Helvetica Neue”", "“Proxima Nova”", sans-serif !important;
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #ff1446;
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 10px * -1);
+  transform: translateX(-50%);
+  background-color: #ff1446 !important;
+}

@@ -1,0 +1,25 @@
+.list__buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 24px;
+    box-sizing: border-box;
+    align-items: center;
+    cursor: pointer;
+}
+
+.default__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background: #229fd9;
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 11%);
+}
+
+.default__button svg {
+    height: 24px;
+    width: 24px;
+    fill: #fff;
+}

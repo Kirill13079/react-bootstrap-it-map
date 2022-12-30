@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap');
+
+:root {
+  --body-font: 'Unbounded', cursive;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-bold: 600;
+
+  --font-size-small: 16px;
+  --font-size-large: 24px;
+}
+
+body {
+    margin: 0;
+}
+
+span, a, input {
+  font-family: var(--body-font);
+  font-weight: var(--font-normal);
+  font-size: var(--font-size-small);
+}
+
+h1 {
+  font-family: var(--body-font);
+  font-weight: var(--font-bold);
+  font-size: var(--font-size-large);
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  background: white;
+}
+
+.leaflet-popup-content {
+  width:auto !important;
+}
+
+.marker-cluster {
+    background-color: #098aff;
+}
+
+.marker-cluster:hover {
+  background-color: #ff1446;
+}
+
+.marker-cluster-medium div {
+    background: #098aff;
+    color: white;
+  }
+  
+  .marker-cluster-small div {
+    background: #098aff;
+    color: white;
+  }
+  
+  .marker-cluster-large div {
+    background-color: #098aff;
+    color: white;
+  }

@@ -1,0 +1,128 @@
+.key__item--wrapper {
+    display: flex;
+    border-bottom: 1px solid rgba(76,15,142,0.08);
+    background-color: white;
+}
+
+.key__item--wrapper:hover {
+    background-color: whitesmoke;
+}
+
+.key__item { 
+    width: 100%;
+    display: flex;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: transparent;
+    align-items: center;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.key__item--img {
+    position: relative;
+    flex: 0 0 auto;
+    height: 48px;
+    width: 48px;
+    border-radius: 4px;
+    align-self: center;
+    margin-right: 12px;
+    background-color: rgba(255,20,70,0.12);
+    box-sizing: border-box;
+    max-height: 48px;
+}
+
+.key__item--content {
+    flex: 1 1 100%;
+    width: calc(100% - 128px);
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    display: flex;
+    align-items: center;
+}
+
+.key__item__content--title {
+    line-height: 24px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    order: 1;
+    flex: 0 0 calc(50% - 30px);
+    margin-right: 8%;
+}
+
+.key__item__content--title span {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.key__item__content--info {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 5px;
+    order: 4;
+    flex: 0 0 100%;
+    margin-right: 8%;
+}
+
+.key__item__content--info span {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0,0,0,0.64);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.key__item__content--count {
+    order: 3;
+    flex: 0 0 calc(50% - 30px);
+    display: flex;
+    align-items: center;
+    white-space: normal;
+}
+
+.count__wrapper--content {
+    border: 1px solid #ff1446;
+    border-radius: 10px;
+    position: relative;
+    padding: 0 8px;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #ff1446;
+    display: flex;
+    align-items: center;
+    min-height: 20px;
+    fill: #ff1446;
+}
+
+.count__wrapper--content svg {
+    height: 10px;
+    width: 10px;
+}
+
+.count__wrapper--content span{
+    white-space: nowrap;
+    line-height: 20px;
+    font-size: 11px; 
+    margin-left: 4px;
+}
+
+.count__wrapper--content:hover {
+    border: 1px solid #fff;
+    background-color: #ff1446;
+    color: #fff;
+    fill: #fff;
+}
